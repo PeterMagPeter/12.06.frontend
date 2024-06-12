@@ -1,4 +1,4 @@
-// istanbul ignore file
+// istanbul ignore files
 
 import React from "react";
 import ReactDOM from "react-dom/client";
