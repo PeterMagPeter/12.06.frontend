@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import styles from "./GameField.module.css";
 import { useEffect, useState, useRef } from "react";
 import { Button, Image } from "react-bootstrap";
@@ -15,7 +17,7 @@ import mediumShipR from "../../../assets/pictures/Schiffe/StandardPNG/3r.png";
 import largeShipR from "../../../assets/pictures/Schiffe/StandardPNG/4r.png";
 import xlargeShipR from "../../../assets/pictures/Schiffe/StandardPNG/5r.png";
 
-const server = "localhost";
+const server = process.env.REACT_APP_API_SERVER_URL;
 const fieldSize = 10;
 let hiddenLayout = Array.from({ length: fieldSize }, () =>
   Array(fieldSize).fill(null)
@@ -47,7 +49,7 @@ export default function GameField() {
   const [socket, setSocket] = useState<any>();
   useEffect(() => {
     // websocket connects to server
-    const newSocket: any = io(`ws://${server}:3001`);
+    const newSocket: any = io(`ws://${server}`);
     // now the websocket listens to the keyword from server and runs the code if the server sent the message
     newSocket.on("connect", () => {
       newSocket.emit("sendShipPlacement", ownShips, username, difficulty);
