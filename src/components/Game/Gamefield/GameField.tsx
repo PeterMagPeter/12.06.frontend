@@ -1,5 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
+
 import styles from "./GameField.module.css";
 import { useEffect, useState, useRef } from "react";
 import { Button, Image } from "react-bootstrap";
